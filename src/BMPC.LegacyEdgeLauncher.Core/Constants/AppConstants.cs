@@ -54,6 +54,9 @@ public static class AppConstants
     public static string DatabasePath => Path.Combine(DatabaseDirectory, "launcher.db");
     public static string SiteListFilePath => Path.Combine(SiteListDirectory, "sitelist.xml");
 
+    /// <summary>Editable deployment/update configuration (update URL + mode). IT can edit this per site.</summary>
+    public static string UpdateConfigPath => Path.Combine(DataRoot, "update-config.json");
+
     // Allowed launch schemes (section 14.1)
     public static readonly IReadOnlySet<string> AllowedSchemes =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "http", "https" };
