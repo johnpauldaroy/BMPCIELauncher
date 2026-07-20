@@ -1,0 +1,7 @@
+{
+  "version": "1.1.0",
+  "url": "BMPC-IE-Launcher-Update-1.1.0.exe",
+  "sha256": "707a6e1d4786dab50e309e709eea7f7da632d692e0cdb2264d7929850c5b7e74",
+  "notes": "Adds automatic update checking and a per-user update installer.",
+  "mandatory": false
+}

@@ -3,7 +3,7 @@
 ; The published app already bundles the .NET 8 runtime, so target PCs need nothing pre-installed.
 
 #define MyAppName "BMPC IE Launcher"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.1.0"
 #define MyAppPublisher "Barbaza Multi-Purpose Cooperative"
 #define MyAppExeName "BMPC.LegacyEdgeLauncher.exe"
 ; Folder produced by `dotnet publish` (self-contained, single-file win-x64).

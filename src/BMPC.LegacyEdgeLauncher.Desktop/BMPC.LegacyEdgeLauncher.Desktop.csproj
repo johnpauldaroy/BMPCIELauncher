@@ -8,6 +8,7 @@
     <UseWPF>true</UseWPF>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <AssemblyName>BMPC.LegacyEdgeLauncher</AssemblyName>
+    <Version>1.1.0</Version>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <!-- Icon embedded into the compiled .exe (taskbar, Explorer, alt-tab). -->
     <ApplicationIcon>Assets\coop.ico</ApplicationIcon>

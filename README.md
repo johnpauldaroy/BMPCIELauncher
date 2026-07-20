@@ -138,8 +138,8 @@ values, and restores only values it changed.
 - Direct Internet Explorer launch cannot be forced when Windows has disabled the retired IE11
   desktop application. Use Edge (IE mode) for supported compatibility on current Windows systems.
 - Router/DrayTek detection is an optional environment check, not a guaranteed hardware claim.
-- The WiX MSI installer, PowerShell deployment export, and full documentation set are planned but
-  not yet in this build.
+- The release includes Inno Setup installers for initial machine-wide deployment and per-user
+  updates. A WiX MSI package and PowerShell deployment export are not included.
 
 ## Security notes
 

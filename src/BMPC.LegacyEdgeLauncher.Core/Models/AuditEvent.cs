@@ -15,5 +15,5 @@ public class AuditEvent
     public bool Succeeded { get; set; } = true;
     public string? ErrorMessage { get; set; }
     public string CorrelationId { get; set; } = Guid.NewGuid().ToString("N");
-    public string ApplicationVersion { get; set; } = "1.0.0";
+    public string ApplicationVersion { get; set; } = Constants.AppConstants.ApplicationVersion;
 }

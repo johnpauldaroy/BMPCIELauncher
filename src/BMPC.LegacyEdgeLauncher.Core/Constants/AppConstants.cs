@@ -5,7 +5,7 @@ public static class AppConstants
 {
     public const string ApplicationName = "BMPC IE Launcher";
     public const string Organization = "Barbaza Multi-Purpose Cooperative";
-    public const string ApplicationVersion = "1.0.0";
+    public const string ApplicationVersion = "1.1.0";
 
     // Registry
     public const string EdgePolicyKeyPath = @"SOFTWARE\Policies\Microsoft\Edge";
