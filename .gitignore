@@ -1,0 +1,22 @@
+# .NET build outputs
+**/bin/
+**/obj/
+
+# Visual Studio user state
+.vs/
+*.user
+*.suo
+
+# Generated packages and published binaries
+publish/
+installer/Output/
+
+# Test and coverage artifacts
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# Operating system files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <AssemblyName>BMPC.LegacyEdgeLauncher</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Icon embedded into the compiled .exe (taskbar, Explorer, alt-tab). -->
+    <ApplicationIcon>Assets\coop.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BMPC.LegacyEdgeLauncher.Core\BMPC.LegacyEdgeLauncher.Core.csproj" />
+    <ProjectReference Include="..\BMPC.LegacyEdgeLauncher.Infrastructure\BMPC.LegacyEdgeLauncher.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="..\..\coop.png" Link="Assets\coop.png" />
+    <Resource Include="Assets\coop.ico" />
+  </ItemGroup>
+
+</Project>

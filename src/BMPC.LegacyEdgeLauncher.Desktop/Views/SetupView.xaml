@@ -1,0 +1,113 @@
+<UserControl x:Class="BMPC.LegacyEdgeLauncher.Desktop.Views.SetupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:BMPC.LegacyEdgeLauncher.Desktop.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:SetupViewModel}">
+    <DockPanel LastChildFill="True" Margin="20">
+        <TextBlock DockPanel.Dock="Top" Text="Policies &amp; setup" Style="{StaticResource SectionHeader}" />
+
+        <TextBlock DockPanel.Dock="Top" Foreground="#B45309" Margin="0,0,0,8"
+                   Text="Standard user mode: policy actions are disabled. Run as administrator to apply changes."
+                   Visibility="{Binding IsAdministrator, Converter={StaticResource BoolToVisibility}, ConverterParameter=invert}" />
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,12"
+                    IsEnabled="{Binding IsAdministrator}">
+            <Button Content="Apply IE mode policies" Command="{Binding ApplyPoliciesCommand}"
+                    Background="#2563EB" Foreground="White" />
+            <Button Content="Configure Trusted Site + legacy .NET" Command="{Binding TrustNatccoHostCommand}" MinWidth="0"
+                    ToolTip="Adds cbs.natcco.coop to Trusted Sites and applies the required XAML/XPS settings for this user." />
+            <Button Content="Allow pop-ups for site" Command="{Binding AllowPopupsCommand}" MinWidth="0" />
+            <Button Content="Auto-open reports in viewer" Command="{Binding EnableReportAutoOpenCommand}" MinWidth="0"
+                    ToolTip="Configures Edge to open downloaded reports (.dprt) directly in the Crystal Reports viewer instead of prompting." />
+            <Button Content="Restart Edge" Command="{Binding RestartEdgeCommand}" MinWidth="0" />
+        </StackPanel>
+
+        <TextBlock DockPanel.Dock="Bottom" Text="{Binding StatusMessage}" Foreground="#374151"
+                   Margin="0,10,0,0" TextWrapping="Wrap" />
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border Background="White" CornerRadius="8" BorderBrush="#E5E7EB" BorderThickness="1"
+                        Padding="16" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="Edge IE mode policies" FontWeight="SemiBold" Margin="0,0,0,8" />
+                        <DataGrid ItemsSource="{Binding Policies}" AutoGenerateColumns="False" IsReadOnly="True"
+                                  HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                                  Background="White" RowHeaderWidth="0" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Value name" Binding="{Binding ValueName}" Width="*" />
+                                <DataGridTextColumn Header="Expected" Binding="{Binding ExpectedValue}" Width="140" />
+                                <DataGridTextColumn Header="Current" Binding="{Binding CurrentValue}" Width="140" />
+                                <DataGridTemplateColumn Header="Status" Width="130">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Status}" FontWeight="SemiBold"
+                                                       Foreground="{Binding Status, Converter={StaticResource StatusToBrush}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridCheckBoxColumn Header="Group Policy" Binding="{Binding ManagedByGroupPolicy}" Width="90" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="White" CornerRadius="8" BorderBrush="#E5E7EB" BorderThickness="1" Padding="16">
+                    <StackPanel>
+                        <TextBlock Text="Current state" FontWeight="SemiBold" Margin="0,0,0,8" />
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="IE mode enabled: " Width="160" Foreground="#6B7280" />
+                            <TextBlock Text="{Binding IeModeEnabled}"
+                                       Foreground="{Binding IeModeEnabled, Converter={StaticResource BoolToOkBrush}}" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Site list URL: " Width="160" Foreground="#6B7280" />
+                            <TextBlock Text="{Binding SiteListUrl}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Restart required: " Width="160" Foreground="#6B7280" />
+                            <TextBlock Text="{Binding RestartRequired}" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Edge running: " Width="160" Foreground="#6B7280" />
+                            <TextBlock Text="{Binding EdgeRunning}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Trusted Sites .NET: " Width="160" Foreground="#6B7280" />
+                            <TextBlock Text="{Binding TrustedZoneDotNetConfigured}"
+                                       Foreground="{Binding TrustedZoneDotNetConfigured, Converter={StaticResource BoolToOkBrush}}"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Managed by policy: " Width="160" Foreground="#6B7280" />
+                            <TextBlock Text="{Binding TrustedZoneDotNetManaged}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Reports auto-open: " Width="160" Foreground="#6B7280" />
+                            <TextBlock Text="{Binding ReportAutoOpenConfigured}"
+                                       Foreground="{Binding ReportAutoOpenConfigured, Converter={StaticResource BoolToOkBrush}}"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="White" CornerRadius="8" BorderBrush="#E5E7EB" BorderThickness="1"
+                        Padding="16" Margin="0,12,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Configuration backup" FontWeight="SemiBold" Margin="0,0,0,4" />
+                        <TextBlock TextWrapping="Wrap" Foreground="#6B7280" FontSize="12" Margin="0,0,0,10"
+                                   Text="Export the registered applications to a file you can back up or move to another machine. Import merges a file back in — adding new applications and updating existing ones. Edge policies are not included; apply them with the buttons above after importing." />
+                        <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsAdministrator}">
+                            <Button Content="Export config" Command="{Binding ExportConfigCommand}"
+                                    Background="#2563EB" Foreground="White" />
+                            <Button Content="Import config" Command="{Binding ImportConfigCommand}" MinWidth="0" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>
